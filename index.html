@@ -357,7 +357,7 @@
           <ul class="list-disc pl-5 space-y-1">
             <li>2024 간이세액표(1인) 적용</li>
             <li>4대보험 상·하한 반영</li>
-            <li>장기요양보험료 = 건강보험료 × <b>12.95%</b></li>
+            <li>장기요양보험료 = 건강보험료 × <b>13.14%</b></li>
             <li>모든 세목·보험 <b>10원 절사</b></li>
             <li>세목·보험 산정 기준: <b>비과세 제외 금액</b></li>
             <li>국민연금 기준소득: <b>천원단위</b>로 내림</li>
@@ -591,9 +591,9 @@
     function renderOwnerCombinedRate(elOut, elHint, ownerPct){
       // 서버도 계산하지만, UI 라벨은 즉시 표시
       // 건보+장기요양의 합계(근로자+사업주)는 서버와 다를 수 있으나, 참고용 라벨
-      const HI = 0.03545;
-      const LTC = 0.1295;
-      const healthBoth = 2 * HI * (1 + LTC); // ~8.008%
+      const HI = 0.03595;
+      const LTC = 0.1314;
+      const healthBoth = 2 * HI * (1 + LTC); // ~8.135%
       const owner = (ownerPct/100);
       const local = owner * 0.10;
       const total = owner + local + healthBoth;
