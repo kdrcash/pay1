@@ -127,10 +127,14 @@
               <div class="bg-white rounded-lg border p-3">
                 <div class="text-gray-600">지급총액</div>
                 <div id="gross_pay_result" class="font-semibold text-gray-900 mt-1"></div>
+                <!-- [추가 1] 지급총액 하단: 비과세 포함 -->
+                <div id="gross_nontax_note" class="text-[11px] text-gray-500 mt-1"></div>
               </div>
               <div class="bg-white rounded-lg border p-3">
                 <div class="text-gray-600">공제액 합계</div>
                 <div id="deductions_total_result" class="font-semibold text-gray-900 mt-1"></div>
+                <!-- [추가 2] 공제액 합계 하단: 실수령액 -->
+                <div id="deductions_net_note" class="text-[11px] text-gray-500 mt-1"></div>
               </div>
             </div>
 
@@ -453,6 +457,10 @@
       error: document.getElementById('error_message'),
       gross: document.getElementById('gross_pay_result'),
       totalDed: document.getElementById('deductions_total_result'),
+      // [추가 1/2] 카드 하단 보조 문구
+      grossNonTaxNote: document.getElementById('gross_nontax_note'),
+      deductionsNetNote: document.getElementById('deductions_net_note'),
+
       annualExcl: document.getElementById('annual_excl'),
       annualIncl: document.getElementById('annual_incl'),
       tbExcl: document.getElementById('total_burden_excl'),
@@ -718,6 +726,11 @@
         EL.annualIncl.textContent = fmt(Math.round(r.gross * 13));
         EL.gross.textContent = fmt(r.gross);
         EL.totalDed.textContent = fmt(r.total);
+
+        // [추가 1] 지급총액 하단: 비과세 포함
+        EL.grossNonTaxNote.textContent = `비과세 ${fmt(r.nonTax)} 포함`;
+        // [추가 2] 공제액 합계 하단: 실수령액
+        EL.deductionsNetNote.textContent = `실수령액 ${fmt(r.net)}`;
 
         EL.np.textContent = fmt(r.np);
         EL.hi.textContent = fmt(r.hi);
